@@ -1,10 +1,11 @@
-    using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform[] _targetPaths;
-    [SerializeField] private EnemyAI _hiddenEnemy;
+    [SerializeField] private Renderer _renderer;
+    [SerializeField] private Gradient _gradient;
     Vector3[] _targetPathPoints;
     [SerializeField] float _pathFollowSpeed;
 
@@ -18,7 +19,7 @@ public class EnemyAI : MonoBehaviour
             _targetPathPoints[i] = _targetPaths[i].position;
         }
 
-        transform.DOPath(_targetPathPoints, _pathFollowSpeed - (difficulty / 6f)).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+        transform.DOPath(_targetPathPoints, _pathFollowSpeed - (difficulty / 20f)).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
     }
 
     void OnTriggerEnter(Collider other)
@@ -31,10 +32,7 @@ public class EnemyAI : MonoBehaviour
 
     public void SetDifficulty(int difficulty)
     {
-        if (difficulty > 3)
-        {
-            _hiddenEnemy.gameObject.SetActive(true);
-        }
         StartFollowPath(difficulty);
+        _renderer.material.color = _gradient.Evaluate(difficulty / 6f);
     }
 }

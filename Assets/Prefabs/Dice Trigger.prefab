@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf0e04df954b70bf0bc209483ebfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diceArea: {fileID: 0}
+  _enemyAI: {fileID: 0}
 --- !u!65 &6873933104685160201
 BoxCollider:
   m_ObjectHideFlags: 0

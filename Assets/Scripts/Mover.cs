@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Mover : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Mover : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     
     [SerializeField] float _moveSpeed;
-    
+    public bool IsTransferring { get; private set; }
+
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
@@ -24,8 +26,12 @@ public class Mover : MonoBehaviour
 
     public void JumpToTarget(Vector3 target)
     {
+        IsTransferring = true;
         _characterController.enabled = false;
-        _rigidbody.DOJump(target, 1f, 1, 0.5f);
-        _characterController.enabled = true;
+        transform.DOJump(target, 1f, 1, 1f).OnComplete(() =>
+        {
+            IsTransferring = false;
+            _characterController.enabled = true;
+        });
     }
 }
