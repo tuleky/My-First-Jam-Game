@@ -3,9 +3,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] Transform _startingPoint;
+    [SerializeField] private Mover _mover;
     
     public void Die()
     {
-        transform.position = _startingPoint.position;
+        _mover.MoveToTarget(_startingPoint.position);
     }
 }

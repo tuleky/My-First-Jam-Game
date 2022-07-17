@@ -4,6 +4,8 @@ using UnityEngine;
 public class DiceTrigger : MonoBehaviour
 {
     [SerializeField] private DiceArea _diceArea;
+    [SerializeField] private EnemyAI _enemyAI;
+    
 
     bool _isTriggered;
     
@@ -16,8 +18,13 @@ public class DiceTrigger : MonoBehaviour
         
         if (other.TryGetComponent(out Mover mover))
         {
-            _diceArea.RollDice();
+            StartCoroutine(_diceArea.RollDice(IncreaseEnemyPower));
             _isTriggered = true;
         }
+    }
+
+    void IncreaseEnemyPower(int x)
+    {
+        _enemyAI.SetDifficulty(x);
     }
 }

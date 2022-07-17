@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 1554702301620284100}
+  _rigidbody: {fileID: 1554702301620284096}
   _moveSpeed: 5
 --- !u!114 &1554702301620284097
 MonoBehaviour:
@@ -81,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingPoint: {fileID: 0}
+  _mover: {fileID: 1554702301620284098}
 --- !u!54 &1554702301620284096
 Rigidbody:
   m_ObjectHideFlags: 0
